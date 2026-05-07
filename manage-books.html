@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSC Community Library - Manage Books</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">BOSC Library</h1>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="manage-books.html" class="active">Manage Books</a></li>
+                    <li><a href="view-books.html">View Books</a></li>
+                    <li><a href="manage-members.html">Manage Members</a></li>
+                    <li><a href="view-members.html">View Members</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Manage Books</h2>
+                <p>Add new books to the collection and manage borrowing</p>
+            </div>
+        </section>
+
+        <section class="management-section">
+            <div class="container">
+                <div class="management-grid">
+                    <div class="management-card">
+                        <h3>Add New Book</h3>
+                        <form id="book-form">
+                            <div class="form-group">
+                                <label for="book-title">Book Title</label>
+                                <input type="text" id="book-title" placeholder="Enter book title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-author">Author</label>
+                                <input type="text" id="book-author" placeholder="Enter author name" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Add Book</button>
+                        </form>
+                    </div>
+
+                    <div class="management-card">
+                        <h3>Borrow/Return Book</h3>
+                        <form id="borrow-form">
+                            <div class="form-group">
+                                <label for="borrow-member">Select Member</label>
+                                <select id="borrow-member" required>
+                                    <option value="">Choose a member</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="borrow-book">Select Book</label>
+                                <select id="borrow-book" required>
+                                    <option value="">Choose a book</option>
+                                </select>
+                            </div>
+                            <button type="submit" id="borrow-btn" class="btn-primary">Borrow Book</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 BOSC Community Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/manage-books.js"></script>
+</body>
+</html>
