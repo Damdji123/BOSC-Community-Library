@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "BOSC Community Library",
+    "tagline": "Your neighborhood hub for knowledge and community"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "manageBooks": "Manage Books",
+    "viewBooks": "View Books",
+    "manageMembers": "Manage Members",
+    "viewMembers": "View Members",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Welcome to BOSC Community Library",
+    "description": "Discover books, connect with community members, and grow together",
+    "stats": {
+      "books": "Books Available",
+      "members": "Active Members",
+      "languages": "Languages Supported"
+    }
+  },
+  "about": {
+    "title": "About BOSC Community Library",
+    "mission": "Mission",
+    "missionText": "To foster a love of reading and learning within our community by providing free access to quality books and creating a welcoming space for knowledge exchange.",
+    "values": "Our Values"
+  },
+  "books": {
+    "viewBooks": "Our Book Collection",
+    "exploreCollection": "Explore our diverse collection of books",
+    "searchPlaceholder": "Search books...",
+    "filterAll": "All Books",
+    "filterAvailable": "Available",
+    "filterBorrowed": "Borrowed",
+    "title": "Title",
+    "author": "Author",
+    "id": "ID",
+    "borrower": "Borrower",
+    "status": "Status",
+    "available": "Available",
+    "borrowed": "Borrowed",
+    "noBooks": "No books found. Try adjusting your search or filter.",
+    "found": "Found {{count}} book",
+    "foundPlural": "Found {{count}} books"
+  },
+  "members": {
+    "viewMembers": "Our Members",
+    "meetCommunity": "Meet the wonderful people in our reading community",
+    "searchPlaceholder": "Search members by name or email...",
+    "sortByName": "Sort by Name (A-Z)",
+    "sortByNameDesc": "Sort by Name (Z-A)",
+    "sortByDateNew": "Newest Members",
+    "sortByDateOld": "Oldest Members",
+    "name": "Name",
+    "email": "Email",
+    "joined": "Joined",
+    "noMembers": "No members found. Try adjusting your search.",
+    "notProvided": "Not provided",
+    "found": "Found {{count}} member",
+    "foundPlural": "Found {{count}} members"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Full Name",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "dontHaveAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "resetButton": "Reset Password",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Registration successful!",
+    "resetSuccess": "Password reset successful!",
+    "invalidEmail": "Invalid email or password.",
+    "emailTaken": "Email already registered.",
+    "passwordTooShort": "Password must be at least 6 characters.",
+    "resetToken": "Enter reset token"
+  },
+  "forms": {
+    "addBook": "Add Book",
+    "addMember": "Add Member",
+    "borrowBook": "Borrow Book",
+    "returnBook": "Return Book",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "messages": {
+    "success": "Success!",
+    "error": "Error!",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "back": "Go Back",
+    "close": "Close"
+  },
+  "footer": {
+    "copyright": "© 2026 BOSC Community Library. All rights reserved."
+  }
+}
