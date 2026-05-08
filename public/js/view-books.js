@@ -1,15 +1,21 @@
 // View Books page functionality
-document.addEventListener('DOMContentLoaded', () => {
-    displayBooks();
+let allBooks = [];
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await displayBooks();
+    document.getElementById('search-input').addEventListener('input', filterBooks);
+    document.getElementById('filter-select').addEventListener('change', filterBooks);
 });
 
-// Event listeners
-document.getElementById('search-input').addEventListener('input', filterBooks);
-document.getElementById('filter-select').addEventListener('change', filterBooks);
-
-function displayBooks(booksToShow = library.books) {
+async function displayBooks(booksToShow) {
     const container = document.getElementById('books-container');
     container.innerHTML = '';
+
+    if (!booksToShow) {
+        const response = await fetchBooks().catch(() => ({ books: [] }));
+        allBooks = response.books;
+        booksToShow = allBooks;
+    }
 
     if (booksToShow.length === 0) {
         container.innerHTML = '<p>No books found.</p>';
@@ -31,6 +37,7 @@ function displayBooks(booksToShow = library.books) {
             <div class="book-details">
                 <p><strong>Author:</strong> ${book.author}</p>
                 <p><strong>ID:</strong> ${book.id}</p>
+                <p><strong>Borrower:</strong> ${book.borrower_name || 'None'}</p>
             </div>
         `;
 
@@ -42,7 +49,7 @@ function filterBooks() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const filterValue = document.getElementById('filter-select').value;
 
-    let filteredBooks = library.books.filter(book =>
+    let filteredBooks = allBooks.filter(book =>
         book.title.toLowerCase().includes(searchTerm) ||
         book.author.toLowerCase().includes(searchTerm)
     );

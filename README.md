@@ -12,6 +12,7 @@ A web-based library management system for the BOSC Community Library, built with
 ## Getting Started
 
 ### Prerequisites
+- Node.js and npm installed
 - A modern web browser (Chrome, Firefox, Safari, Edge)
 
 ### Installation
@@ -19,8 +20,30 @@ A web-based library management system for the BOSC Community Library, built with
    ```
    git clone https://github.com/Damdji123/BOSC-Community-Library.git
    ```
-2. Navigate to the project directory
-3. Open `index.html` in your web browser
+2. Navigate to the project directory:
+   ```
+   cd BOSC-Community-Library
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the application:
+   ```
+   npm start
+   ```
+5. Open the app in your browser:
+   ```
+   http://localhost:3000
+   ```
+
+## Features
+- Librarian registration and login
+- Forgot password and reset flow
+- SQLite database with tables for librarians, books, members, and password resets
+- Book borrowing and returning with live backend persistence
+- Professional multi-page web interface
+- Admin book/member management pages
 
 ## Project Structure
 

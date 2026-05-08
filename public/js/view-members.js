@@ -1,18 +1,20 @@
 // View Members page functionality
-document.addEventListener('DOMContentLoaded', () => {
-    displayMembers();
+document.addEventListener('DOMContentLoaded', async () => {
+    await displayMembers();
 });
 
-function displayMembers() {
+async function displayMembers() {
     const container = document.getElementById('members-container');
     container.innerHTML = '';
 
-    if (library.members.length === 0) {
+    const response = await fetchMembers().catch(() => ({ members: [] }));
+
+    if (!response.members || response.members.length === 0) {
         container.innerHTML = '<p>No members found.</p>';
         return;
     }
 
-    library.members.forEach(member => {
+    response.members.forEach(member => {
         const memberCard = document.createElement('div');
         memberCard.className = 'member-card';
 
@@ -21,7 +23,7 @@ function displayMembers() {
             <p><strong>ID:</strong> ${member.id}</p>
             ${member.email ? `<p><strong>Email:</strong> ${member.email}</p>` : ''}
             <div class="member-stats">
-                <p><strong>Books Borrowed:</strong> ${member.borrowedBooks.length}</p>
+                <p><strong>Joined:</strong> ${new Date(member.created_at).toLocaleDateString()}</p>
             </div>
         `;
 
