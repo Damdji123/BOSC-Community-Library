@@ -1,13 +1,15 @@
 # BOSC Community Library
 
-A web-based library management system for the BOSC Community Library, built with HTML, CSS, and JavaScript.
+A web-based library management system for the BOSC Community Library, built with Node.js, HTML, CSS, JavaScript, and optional PHP backend connector support.
 
 ## Features
 
 - Add books and members
 - Borrow and return books
 - View lists of books and members
-- Data persistence using browser localStorage
+- Librarian authentication and session handling
+- Optional PHP connector sample in `public/php/api_proxy.php`
+- Backend persistence with SQLite
 
 ## Getting Started
 
@@ -44,6 +46,7 @@ A web-based library management system for the BOSC Community Library, built with
 - Book borrowing and returning with live backend persistence
 - Professional multi-page web interface
 - Admin book/member management pages
+- Optional PHP sample connector for backend integration
 
 ## Project Structure
 
@@ -60,4 +63,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
