@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "Biblioteca Comunitaria BOSC",
+    "tagline": "Tu centro comunitario para el conocimiento y la comunidad"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "manageBooks": "Administrar libros",
+    "viewBooks": "Ver libros",
+    "manageMembers": "Administrar miembros",
+    "viewMembers": "Ver miembros",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión"
+  },
+  "home": {
+    "title": "Bienvenido a la Biblioteca Comunitaria BOSC",
+    "description": "Descubre libros, conéctate con miembros de la comunidad y crece juntos",
+    "stats": {
+      "books": "Libros disponibles",
+      "members": "Miembros activos",
+      "languages": "Idiomas soportados"
+    }
+  },
+  "about": {
+    "title": "Acerca de la Biblioteca Comunitaria BOSC",
+    "mission": "Misión",
+    "missionText": "Fomentar el amor por la lectura y el aprendizaje en nuestra comunidad proporcionando acceso gratuito a libros de calidad y creando un espacio acogedor para el intercambio de conocimientos.",
+    "values": "Nuestros valores"
+  },
+  "books": {
+    "viewBooks": "Nuestra colección de libros",
+    "exploreCollection": "Explora nuestra diversa colección de libros",
+    "searchPlaceholder": "Buscar libros...",
+    "filterAll": "Todos los libros",
+    "filterAvailable": "Disponible",
+    "filterBorrowed": "Prestado",
+    "title": "Título",
+    "author": "Autor",
+    "id": "ID",
+    "borrower": "Prestatario",
+    "status": "Estado",
+    "available": "Disponible",
+    "borrowed": "Prestado",
+    "noBooks": "No se encontraron libros. Intenta ajustar tu búsqueda o filtro.",
+    "found": "Se encontró {{count}} libro",
+    "foundPlural": "Se encontraron {{count}} libros"
+  },
+  "members": {
+    "viewMembers": "Nuestros miembros",
+    "meetCommunity": "Conoce a las maravillosas personas de nuestra comunidad lectora",
+    "searchPlaceholder": "Buscar miembros por nombre o correo...",
+    "sortByName": "Ordenar por nombre (A-Z)",
+    "sortByNameDesc": "Ordenar por nombre (Z-A)",
+    "sortByDateNew": "Miembros más nuevos",
+    "sortByDateOld": "Miembros más antiguos",
+    "name": "Nombre",
+    "email": "Correo",
+    "joined": "Se unió",
+    "noMembers": "No se encontraron miembros. Intenta ajustar tu búsqueda.",
+    "notProvided": "No proporcionado",
+    "found": "Se encontró {{count}} miembro",
+    "foundPlural": "Se encontraron {{count}} miembros"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "email": "Correo",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "name": "Nombre completo",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPassword": "Restablecer contraseña",
+    "dontHaveAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "loginButton": "Iniciar sesión",
+    "registerButton": "Registrarse",
+    "resetButton": "Restablecer contraseña",
+    "loginSuccess": "¡Inicio de sesión exitoso!",
+    "registerSuccess": "¡Registro exitoso!",
+    "resetSuccess": "¡Contraseña restablecida exitosamente!",
+    "invalidEmail": "Correo o contraseña inválidos.",
+    "emailTaken": "Correo ya registrado.",
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres.",
+    "resetToken": "Ingresa el token de restablecimiento"
+  },
+  "forms": {
+    "addBook": "Añadir libro",
+    "addMember": "Añadir miembro",
+    "borrowBook": "Prestar libro",
+    "returnBook": "Devolver libro",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  },
+  "messages": {
+    "success": "¡Éxito!",
+    "error": "¡Error!",
+    "loading": "Cargando...",
+    "noData": "Sin datos disponibles",
+    "back": "Volver",
+    "close": "Cerrar"
+  },
+  "footer": {
+    "copyright": "© 2026 Biblioteca Comunitaria BOSC. Todos los derechos reservados."
+  }
+}
