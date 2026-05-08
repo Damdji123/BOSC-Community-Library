@@ -69,3 +69,15 @@ async function fetchMembers() {
 async function createMember(payload) {
   return apiFetch('/members', { method: 'POST', body: payload });
 }
+
+async function searchResources(type, query, options = {}) {
+  const { limit = 10, offset = 0, sort = 'relevance' } = options;
+  const params = new URLSearchParams({
+    type,
+    query,
+    limit,
+    offset,
+    sort
+  });
+  return apiFetch(`/search?${params.toString()}`, { method: 'GET' });
+}

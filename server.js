@@ -204,6 +204,107 @@ app.post('/api/members', requireAuth, (req, res) => {
   });
 });
 
+app.get('/api/search', (req, res) => {
+  const { type, query, limit = 10, offset = 0, sort = 'relevance' } = req.query;
+  
+  if (!type || !query) {
+    return res.status(400).json({ success: false, message: 'Type and query parameters are required.' });
+  }
+
+  const searchQuery = `%${query.toLowerCase()}%`;
+  const limitVal = Math.min(parseInt(limit) || 10, 100);
+  const offsetVal = parseInt(offset) || 0;
+
+  if (type === 'book' || type === 'books') {
+    // Search books by title, author
+    const countSql = `SELECT COUNT(*) as total FROM books WHERE LOWER(title) LIKE ? OR LOWER(author) LIKE ?`;
+    db.get(countSql, [searchQuery, searchQuery], (countErr, countRow) => {
+      if (countErr) return res.status(500).json({ success: false, message: 'Search failed.' });
+
+      let dataSql = `SELECT id, title, author, available, borrower_id, borrowed_at FROM books WHERE LOWER(title) LIKE ? OR LOWER(author) LIKE ?`;
+      
+      if (sort === 'title') dataSql += ' ORDER BY title ASC';
+      else if (sort === 'author') dataSql += ' ORDER BY author ASC';
+      else if (sort === 'newest') dataSql += ' ORDER BY id DESC';
+      else dataSql += ' ORDER BY (CASE WHEN LOWER(title) LIKE ? THEN 0 ELSE 1 END), title ASC';
+
+      dataSql += ` LIMIT ? OFFSET ?`;
+
+      const params = sort === 'relevance' 
+        ? [searchQuery, searchQuery, searchQuery, limitVal, offsetVal]
+        : [searchQuery, searchQuery, limitVal, offsetVal];
+
+      db.all(dataSql, params, (err, rows) => {
+        if (err) return res.status(500).json({ success: false, message: 'Search failed.' });
+        res.json({
+          success: true,
+          type: 'books',
+          results: rows || [],
+          total: countRow.total,
+          limit: limitVal,
+          offset: offsetVal,
+          page: Math.floor(offsetVal / limitVal) + 1
+        });
+      });
+    });
+  } else if (type === 'member' || type === 'members') {
+    // Search members by name, email
+    const countSql = `SELECT COUNT(*) as total FROM members WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ?`;
+    db.get(countSql, [searchQuery, searchQuery], (countErr, countRow) => {
+      if (countErr) return res.status(500).json({ success: false, message: 'Search failed.' });
+
+      let dataSql = `SELECT id, name, email, created_at FROM members WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ?`;
+      
+      if (sort === 'name') dataSql += ' ORDER BY name ASC';
+      else if (sort === 'newest') dataSql += ' ORDER BY created_at DESC';
+      else if (sort === 'oldest') dataSql += ' ORDER BY created_at ASC';
+      else dataSql += ' ORDER BY (CASE WHEN LOWER(name) LIKE ? THEN 0 ELSE 1 END), name ASC';
+
+      dataSql += ` LIMIT ? OFFSET ?`;
+
+      const params = sort === 'relevance' 
+        ? [searchQuery, searchQuery, searchQuery, limitVal, offsetVal]
+        : [searchQuery, searchQuery, limitVal, offsetVal];
+
+      db.all(dataSql, params, (err, rows) => {
+        if (err) return res.status(500).json({ success: false, message: 'Search failed.' });
+        res.json({
+          success: true,
+          type: 'members',
+          results: rows || [],
+          total: countRow.total,
+          limit: limitVal,
+          offset: offsetVal,
+          page: Math.floor(offsetVal / limitVal) + 1
+        });
+      });
+    });
+  } else {
+    // Search both types
+    const bookSql = `SELECT id, title, author, available, borrower_id, borrowed_at FROM books WHERE LOWER(title) LIKE ? OR LOWER(author) LIKE ? LIMIT ? OFFSET ?`;
+    const memberSql = `SELECT id, name, email, created_at FROM members WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ? LIMIT ? OFFSET ?`;
+
+    db.all(bookSql, [searchQuery, searchQuery, limitVal, offsetVal], (bookErr, books) => {
+      if (bookErr) return res.status(500).json({ success: false, message: 'Search failed.' });
+
+      db.all(memberSql, [searchQuery, searchQuery, limitVal, offsetVal], (memberErr, members) => {
+        if (memberErr) return res.status(500).json({ success: false, message: 'Search failed.' });
+
+        res.json({
+          success: true,
+          type: 'all',
+          results: {
+            books: books || [],
+            members: members || []
+          },
+          limit: limitVal,
+          offset: offsetVal
+        });
+      });
+    });
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
