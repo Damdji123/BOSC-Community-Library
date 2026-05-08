@@ -40,6 +40,15 @@
 
         <section class="members-section">
             <div class="container">
+                <div class="filter-section">
+                    <input type="text" id="search-input" placeholder="Search members by name or email...">
+                    <select id="sort-select">
+                        <option value="name-asc">Sort by Name (A-Z)</option>
+                        <option value="name-desc">Sort by Name (Z-A)</option>
+                        <option value="date-newest">Newest Members</option>
+                        <option value="date-oldest">Oldest Members</option>
+                    </select>
+                </div>
                 <div id="members-container" class="members-grid">
                     <!-- Members will be displayed here -->
                 </div>
