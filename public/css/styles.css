@@ -283,6 +283,39 @@ h2, h3, h4 {
     font-weight: 600;
 }
 
+.filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f4fbff;
+    border-radius: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-section input,
+.filter-section select {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 16px;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.filter-section input:focus,
+.filter-section select:focus {
+    outline: none;
+    border-color: #0b5d90;
+    box-shadow: 0 0 0 3px rgba(11, 93, 144, 0.1);
+}
+
+.filter-section input::placeholder {
+    color: #7a9aaa;
+}
+
 .management-section,
 .books-section,
 .members-section,
