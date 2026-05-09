@@ -4,7 +4,7 @@
 
 $backendBase = 'http://localhost:3000/api';
 
-function requestBackend($path, $method = 'GET', $payload = null) {
+function requestBackend(string $path, string $method = 'GET', $payload = null) {
     global $backendBase;
     $url = rtrim($backendBase, '/') . '/' . ltrim($path, '/');
 
