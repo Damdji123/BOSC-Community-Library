@@ -1,28 +1,43 @@
--- Table des membres avec accès possible
-CREATE TABLE members (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT NOT NULL UNIQUE, -- Obligatoire pour l'identification
-  password_hash TEXT,         -- Optionnel si vous gérez les accès
+-- Database: bosc_library
+
+CREATE DATABASE IF NOT EXISTS bosc_library;
+USE bosc_library;
+
+-- Table des membres
+CREATE TABLE IF NOT EXISTS members (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table des livres (sans infos d'emprunt direct)
-CREATE TABLE books (
-  id INTEGER PRIMARY KEY,
-  title TEXT NOT NULL,
-  author TEXT NOT NULL,
-  available INTEGER NOT NULL DEFAULT 1,
+-- Table des livres
+CREATE TABLE IF NOT EXISTS books (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  available TINYINT(1) NOT NULL DEFAULT 1,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- NOUVELLE TABLE : Pour l'historique et les emprunts actifs
-CREATE TABLE loans (
-  id INTEGER PRIMARY KEY,
-  book_id INTEGER NOT NULL,
-  member_id INTEGER NOT NULL,
+-- Table des emprunts (loans)
+CREATE TABLE IF NOT EXISTS loans (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  book_id INT NOT NULL,
+  member_id INT NOT NULL,
   loan_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  return_date DATETIME, -- Vide si le livre n'est pas encore rendu
+  return_date DATETIME DEFAULT NULL,
   FOREIGN KEY (book_id) REFERENCES books(id),
   FOREIGN KEY (member_id) REFERENCES members(id)
 );
+
+-- Seed Data
+INSERT INTO books (title, author, available) VALUES 
+('The Great Gatsby', 'F. Scott Fitzgerald', 1),
+('1984', 'George Orwell', 1),
+('To Kill a Mockingbird', 'Harper Lee', 1);
+
+INSERT INTO members (name, email) VALUES 
+('John Doe', 'john@example.com'),
+('Jane Smith', 'jane@example.com');
