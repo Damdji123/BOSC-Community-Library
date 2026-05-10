@@ -5,12 +5,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function updateStats() {
-  const booksResponse = await fetchBooks().catch(() => ({ books: [] }));
-  const membersResponse = await fetchMembers().catch(() => ({ members: [] }));
+  const booksResponse = await fetchBooks().catch(() => ({ data: [] }));
+  const membersResponse = await fetchMembers().catch(() => ({ data: [] }));
 
-  const totalBooks = booksResponse.books.length;
-  const borrowedBooks = booksResponse.books.filter(book => !book.available).length;
-  const totalMembers = membersResponse.members.length;
+  const books = booksResponse.data || [];
+  const members = membersResponse.data || [];
+
+  const totalBooks = books.length;
+  const borrowedBooks = books.filter(book => !book.available).length;
+  const totalMembers = members.length;
 
   document.getElementById('total-books').textContent = totalBooks;
   document.getElementById('total-members').textContent = totalMembers;

@@ -41,10 +41,10 @@ document.getElementById('borrow-form').addEventListener('submit', async (e) => {
 
     try {
         if (action === 'Borrow Book') {
-            await borrowBook({ memberId, bookId });
+            await borrowBook({ member_id: memberId, book_id: bookId });
             alert('Book borrowed successfully!');
         } else {
-            await returnBook({ bookId });
+            await returnBook({ book_id: bookId });
             alert('Book returned successfully!');
         }
         await populateSelects();
@@ -67,18 +67,18 @@ function updateButton() {
         return;
     }
 
-    btn.textContent = book.available ? 'Borrow Book' : 'Return Book';
+    btn.textContent = (book.available == 1) ? 'Borrow Book' : 'Return Book';
 }
 
 async function populateSelects() {
     const memberSelect = document.getElementById('borrow-member');
     const bookSelect = document.getElementById('borrow-book');
 
-    const membersResponse = await fetchMembers().catch(() => ({ members: [] }));
-    const booksResponse = await fetchBooks().catch(() => ({ books: [] }));
+    const membersResponse = await fetchMembers().catch(() => ({ data: [] }));
+    const booksResponse = await fetchBooks().catch(() => ({ data: [] }));
 
-    currentMembers = membersResponse.members;
-    currentBooks = booksResponse.books;
+    currentMembers = membersResponse.data || [];
+    currentBooks = booksResponse.data || [];
 
     memberSelect.innerHTML = '<option value="">Select Member</option>';
     currentMembers.forEach(member => {

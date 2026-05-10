@@ -7,14 +7,15 @@ async function displayMembers() {
     const container = document.getElementById('members-container');
     container.innerHTML = '';
 
-    const response = await fetchMembers().catch(() => ({ members: [] }));
+    const response = await fetchMembers().catch(() => ({ data: [] }));
+    const members = response.data || [];
 
-    if (!response.members || response.members.length === 0) {
+    if (members.length === 0) {
         container.innerHTML = '<p>No members found.</p>';
         return;
     }
 
-    response.members.forEach(member => {
+    members.forEach(member => {
         const memberCard = document.createElement('div');
         memberCard.className = 'member-card';
 

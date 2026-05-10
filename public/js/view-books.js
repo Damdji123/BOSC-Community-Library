@@ -12,8 +12,8 @@ async function displayBooks(booksToShow) {
     container.innerHTML = '';
 
     if (!booksToShow) {
-        const response = await fetchBooks().catch(() => ({ books: [] }));
-        allBooks = response.books;
+        const response = await fetchBooks().catch(() => ({ data: [] }));
+        allBooks = response.data || [];
         booksToShow = allBooks;
     }
 
