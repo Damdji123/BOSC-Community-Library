@@ -63,11 +63,16 @@ function updateButton() {
     const book = currentBooks.find(b => String(b.id) === String(bookId));
 
     if (!book) {
-        btn.textContent = 'Borrow Book';
+        btn.innerHTML = '<i data-lucide="arrow-right-left"></i> Borrow Book';
+        if (window.lucide) lucide.createIcons();
         return;
     }
 
-    btn.textContent = (book.available == 1) ? 'Borrow Book' : 'Return Book';
+    const isAvailable = (book.available == 1);
+    btn.innerHTML = isAvailable 
+        ? '<i data-lucide="arrow-right-left"></i> Borrow Book' 
+        : '<i data-lucide="rotate-ccw"></i> Return Book';
+    if (window.lucide) lucide.createIcons();
 }
 
 async function populateSelects() {
