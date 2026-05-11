@@ -3,8 +3,14 @@ require_once 'config.php';
 
 header('Content-Type: application/json');
 
+try {
+    $db = getDbConnection();
+} catch (Exception $e) {
+    // Already handled in config.php but for safety
+    exit;
+}
+
 $action = $_GET['action'] ?? '';
-$db = getDbConnection();
 
 // Simple response helper
 function sendResponse($success, $data = null, $message = '') {
@@ -55,7 +61,15 @@ switch ($action) {
 
     case 'books':
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $stmt = $db->query("SELECT * FROM books ORDER BY created_at DESC");
+            // Join with loans and members to get current borrower
+            $query = "
+                SELECT b.*, m.name as borrower_name 
+                FROM books b
+                LEFT JOIN loans l ON b.id = l.book_id AND l.return_date IS NULL
+                LEFT JOIN members m ON l.member_id = m.id
+                ORDER BY b.created_at DESC
+            ";
+            $stmt = $db->query($query);
             $books = $stmt->fetchAll();
             sendResponse(true, $books);
         } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -138,6 +152,6 @@ switch ($action) {
         break;
 
     default:
-        sendResponse(false, null, 'Invalid action');
+        sendResponse(false, null, 'Invalid action: ' . $action);
         break;
 }
