@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSC Community Library - Professional Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.407.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #10b981;
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --border: rgba(226, 232, 240, 0.8);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(160, 84%, 39%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(210, 100%, 23%, 0.05) 0px, transparent 50%);
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Profile Header */
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+        .profile-info p { font-size: 1.2rem; color: #64748b; margin-bottom: 20px; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Stats & Links */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 40px; }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card h3 { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .card i { color: var(--accent); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #1e293b; opacity: 0.9; }
+
+        /* Sections */
+        .section-title { margin: 60px 0 30px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+
+        .screenshot-box {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .screenshot-box img { width: 100%; display: block; background: #f1f5f9; min-height: 200px; }
+        .screenshot-box .caption { padding: 16px; background: #f8fafc; font-size: 0.9rem; color: #64748b; border-top: 1px solid var(--border); }
+
+        .reflection-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            font-size: 1.1rem;
+            color: #334155;
+            white-space: pre-line;
+        }
+
+        @media (max-width: 768px) {
+            .profile-card { flex-direction: column; text-align: center; padding: 30px; }
+            .profile-img { width: 120px; height: 120px; }
+            .profile-info h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="profile-card">
+            <img src="./assets/user-photo.png" alt="Candidate Photo" class="profile-img" id="user-photo">
+            <div class="profile-info">
+                <span class="badge"><i data-lucide="shield-check"></i> Lead Community Maintainer</span>
+                <h1>Professional Portfolio</h1>
+                <p>Take-Home Exam Submission | BOSC Community Library</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="../index.html" class="btn"><i data-lucide="external-link"></i> Launch Live App</a>
+                    <a href="https://github.com/Damdji123/BOSC-Community-Library" class="btn" style="background: #fff; color: var(--primary); border: 1px solid var(--border);">
+                        <i data-lucide="github"></i> View Repository
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Audit Log Summary -->
+        <h2 class="section-title"><i data-lucide="clipboard-list"></i> Submission Audit Log</h2>
+        <div class="grid">
+            <div class="card">
+                <h3><i data-lucide="git-branch"></i> Git Activity</h3>
+                <p>Detailed log of contributions spread across the exam week.</p>
+                <div class="screenshot-box" style="margin-top: 20px;">
+                    <img src="./assets/git-activity.png" alt="Git Activity">
+                    <div class="caption">Audit 1: Contribution distribution.</div>
+                </div>
+            </div>
+            <div class="card">
+                <h3><i data-lucide="check-circle"></i> Resolved Issues</h3>
+                <p>Proof of 5 closed issues and their associated Pull Requests.</p>
+                <div class="screenshot-box" style="margin-top: 20px;">
+                    <img src="./assets/resolved-issues.png" alt="Resolved Issues">
+                    <div class="caption">Audit 2: PR & Issue resolution history.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 60px;">
+            <h3><i data-lucide="calendar"></i> Proof of Participation</h3>
+            <p>Official GitHub "Green Square" graph for the exam week.</p>
+            <div class="screenshot-box" style="margin-top: 20px; max-height: 150px; overflow: hidden;">
+                <img src="./assets/green-squares.png" alt="GitHub Participation">
+                <div class="caption">Audit 3: GitHub Activity Heatmap.</div>
+            </div>
+        </div>
+
+        <!-- Reflective Journal -->
+        <h2 class="section-title"><i data-lucide="book-open"></i> Reflective Journal</h2>
+        <div class="reflection-content" id="reflection-text">
+            <!-- Content from REFLECTION.md will be displayed here or manually pasted -->
+            Loading journal content...
+        </div>
+
+        <footer style="margin-top: 80px; text-align: center; color: #94a3b8; font-size: 0.9rem;">
+            <p>&copy; 2026 BOSC Community Library Portfolio Submission</p>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Load Reflection Content
+        fetch('REFLECTION.md')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('reflection-text').innerText = text;
+            });
+    </script>
+</body>
+
+</html>

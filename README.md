@@ -1,6 +1,16 @@
 # BOSC Community Library
 
-A web-based library management system for the BOSC Community Library, built with Node.js, HTML, CSS, JavaScript, and optional PHP backend connector support.
+> [!IMPORTANT]
+> **EXAM SUBMISSION PORTFOLIO**
+>
+> 🚀 **[View Professional Portfolio Dashboard](portfolio/index.html)**
+>
+> *This dashboard contains the Live App link, Audit Logs, and the Reflective Journal required for final submission.*
+
+---
+
+## 📚 Project Overview
+A professional, secure, and responsive web-based library management system built with PHP/MySQL and vanilla web technologies.
 
 ## Features
 
