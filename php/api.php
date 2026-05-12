@@ -54,6 +54,39 @@ switch ($action) {
         }
         break;
 
+    case 'register':
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') sendResponse(false, null, 'Invalid method');
+        
+        $name = trim($jsonBody['name'] ?? '');
+        $email = trim($jsonBody['email'] ?? '');
+        $password = $jsonBody['password'] ?? '';
+        
+        if (empty($name) || empty($email) || empty($password)) {
+            sendResponse(false, null, 'All fields are required');
+        }
+        
+        try {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $db->prepare("INSERT INTO members (name, email, password_hash) VALUES (?, ?, ?)");
+            $stmt->execute([$name, $email, $hash]);
+            $newId = $db->lastInsertId();
+            
+            // Auto-login after registration
+            $_SESSION['user'] = [
+                'id' => $newId,
+                'name' => $name,
+                'email' => $email
+            ];
+            
+            sendResponse(true, $_SESSION['user'], 'Registration successful');
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) { // Unique constraint violation
+                sendResponse(false, null, 'Email already registered');
+            }
+            sendResponse(false, null, 'Registration failed: ' . $e->getMessage());
+        }
+        break;
+
     case 'logout':
         session_destroy();
         sendResponse(true, null, 'Logged out');

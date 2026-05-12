@@ -27,7 +27,7 @@ async function getSession() {
 }
 
 async function registerLibrarian(payload) {
-  return apiFetch('members', { method: 'POST', body: payload });
+  return apiFetch('register', { method: 'POST', body: payload });
 }
 
 async function loginLibrarian(payload) {
