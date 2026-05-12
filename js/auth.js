@@ -6,20 +6,20 @@ async function handleRegistration(event) {
   const confirmPassword = document.getElementById('register-confirm-password').value;
 
   if (!name || !email || !password) {
-    showAuthMessage('Please complete every field.', 'error');
+    showNotification('Please complete every field.', 'error');
     return;
   }
   if (password !== confirmPassword) {
-    showAuthMessage('Passwords do not match.', 'error');
+    showNotification('Passwords do not match.', 'error');
     return;
   }
 
   try {
     await registerLibrarian({ name, email, password });
-    showAuthMessage('Account created successfully. Redirecting to dashboard...', 'success');
+    showNotification('Account created successfully! Redirecting...', 'success');
     setTimeout(() => window.location.href = 'index.html', 1400);
   } catch (error) {
-    showAuthMessage(error.message, 'error');
+    // showNotification is already handled by apiFetch
   }
 }
 
@@ -29,16 +29,16 @@ async function handleLogin(event) {
   const password = document.getElementById('login-password').value;
 
   if (!email || !password) {
-    showAuthMessage('Please enter your email and password.', 'error');
+    showNotification('Please enter your email and password.', 'error');
     return;
   }
 
   try {
     await loginLibrarian({ email, password });
-    showAuthMessage('Login successful. Redirecting...', 'success');
+    showNotification('Login successful! Redirecting...', 'success');
     setTimeout(() => window.location.href = 'index.html', 1200);
   } catch (error) {
-    showAuthMessage(error.message, 'error');
+    // Handled by apiFetch
   }
 }
 
@@ -47,15 +47,15 @@ async function handleForgotPassword(event) {
   const email = document.getElementById('forgot-email').value.trim();
 
   if (!email) {
-    showAuthMessage('Enter your registered email.', 'error');
+    showNotification('Enter your registered email.', 'error');
     return;
   }
 
   try {
     const result = await requestPasswordReset({ email });
-    showAuthMessage(`${result.message} Token: ${result.token}`, 'success');
+    showNotification(`Token sent! ${result.token}`, 'success');
   } catch (error) {
-    showAuthMessage(error.message, 'error');
+    // Handled by apiFetch
   }
 }
 
@@ -66,26 +66,19 @@ async function handleResetPassword(event) {
   const confirmPassword = document.getElementById('reset-confirm-password').value;
 
   if (!token || !password) {
-    showAuthMessage('Please enter both token and new password.', 'error');
+    showNotification('Please enter both token and new password.', 'error');
     return;
   }
   if (password !== confirmPassword) {
-    showAuthMessage('Passwords do not match.', 'error');
+    showNotification('Passwords do not match.', 'error');
     return;
   }
 
   try {
     await resetPassword({ token, password });
-    showAuthMessage('Your password was reset. Please log in.', 'success');
+    showNotification('Password reset successful! Please log in.', 'success');
     setTimeout(() => window.location.href = 'login.html', 1400);
   } catch (error) {
-    showAuthMessage(error.message, 'error');
+    // Handled by apiFetch
   }
-}
-
-function showAuthMessage(message, type = 'info') {
-  const messageBox = document.getElementById('auth-message');
-  if (!messageBox) return;
-  messageBox.textContent = message;
-  messageBox.className = `auth-message ${type}`;
 }

@@ -14,12 +14,28 @@ async function apiFetch(action, options = {}) {
     config.body = JSON.stringify(config.body);
   }
 
-  const response = await fetch(`${apiBase}${action}`, config);
-  const data = await response.json();
-  if (!response.ok || data.success === false) {
-    throw new Error(data.message || 'Request failed');
+  try {
+    const response = await fetch(`${apiBase}${action}`, config);
+    const data = await response.json();
+    
+    if (!response.ok || data.success === false) {
+      const errorMsg = data.message || 'Request failed';
+      if (typeof showNotification === 'function') showNotification(errorMsg, 'error');
+      throw new Error(errorMsg);
+    }
+    
+    // Optional success notification
+    if (data.message && options.notifySuccess && typeof showNotification === 'function') {
+      showNotification(data.message, 'success');
+    }
+    
+    return data;
+  } catch (err) {
+    if (typeof showNotification === 'function' && !err.message.includes('apiFetch')) {
+       // Only show if not already handled
+    }
+    throw err;
   }
-  return data;
 }
 
 async function getSession() {

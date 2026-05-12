@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('member-email').value.trim();
 
         if (!name) {
-            alert('Please enter a member name.');
+            showNotification('Please enter a member name.', 'error');
             return;
         }
 
         try {
             await createMember({ name, email });
             e.target.reset();
-            alert('Member added successfully!');
+            showNotification('Member added successfully!', 'success');
         } catch (error) {
-            alert(error.message);
+            // Already handled by apiFetch toast
         }
     });
 });

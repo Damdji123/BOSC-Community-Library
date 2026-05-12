@@ -13,7 +13,7 @@ document.getElementById('book-form').addEventListener('submit', async (e) => {
     const author = document.getElementById('book-author').value.trim();
 
     if (!title || !author) {
-        alert('Please provide both book title and author.');
+        showNotification('Please provide both book title and author.', 'error');
         return;
     }
 
@@ -21,9 +21,9 @@ document.getElementById('book-form').addEventListener('submit', async (e) => {
         await createBook({ title, author });
         await populateSelects();
         e.target.reset();
-        alert('Book added successfully!');
+        showNotification('Book added successfully!', 'success');
     } catch (error) {
-        alert(error.message);
+        // Handled by apiFetch toast
     }
 });
 
@@ -35,21 +35,21 @@ document.getElementById('borrow-form').addEventListener('submit', async (e) => {
     const action = btn.textContent.trim();
 
     if (!memberId || !bookId) {
-        alert('Select both a member and a book.');
+        showNotification('Select both a member and a book.', 'error');
         return;
     }
 
     try {
         if (action === 'Borrow Book') {
             await borrowBook({ member_id: memberId, book_id: bookId });
-            alert('Book borrowed successfully!');
+            showNotification('Book borrowed successfully!', 'success');
         } else {
             await returnBook({ book_id: bookId });
-            alert('Book returned successfully!');
+            showNotification('Book returned successfully!', 'success');
         }
         await populateSelects();
     } catch (error) {
-        alert(error.message);
+        // Handled by apiFetch toast
     }
 });
 
