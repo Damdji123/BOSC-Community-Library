@@ -39,6 +39,7 @@ function setupTables($pdo) {
         title VARCHAR(255) NOT NULL,
         author VARCHAR(255) NOT NULL,
         available TINYINT(1) DEFAULT 1,
+        image_path VARCHAR(255) DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 

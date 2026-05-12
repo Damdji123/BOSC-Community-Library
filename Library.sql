@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS books (
   title VARCHAR(255) NOT NULL,
   author VARCHAR(255) NOT NULL,
   available TINYINT(1) NOT NULL DEFAULT 1,
+  image_path VARCHAR(255) DEFAULT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -31,13 +32,3 @@ CREATE TABLE IF NOT EXISTS loans (
   FOREIGN KEY (book_id) REFERENCES books(id),
   FOREIGN KEY (member_id) REFERENCES members(id)
 );
-
--- Seed Data
-INSERT INTO books (title, author, available) VALUES 
-('The Great Gatsby', 'F. Scott Fitzgerald', 1),
-('1984', 'George Orwell', 1),
-('To Kill a Mockingbird', 'Harper Lee', 1);
-
-INSERT INTO members (name, email) VALUES 
-('John Doe', 'john@example.com'),
-('Jane Smith', 'jane@example.com');
